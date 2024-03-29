@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const taskRoutes = require('./routes/TaskRoutes');
 
 const app = express();
-const PORT = 8000;
+const PORT = 8080;
 
 mongoose.connect('mongodb://localhost:27017/taskManagement')
 
