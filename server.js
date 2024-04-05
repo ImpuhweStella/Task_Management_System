@@ -5,7 +5,7 @@ const taskRoutes = require('./routes/TaskRoutes');
 const app = express();
 const PORT = 8080;
 
-mongoose.connect('mongodb://localhost:27017/taskManagement')
+mongoose.connect('mongodb+srv://impuhwestella7:Dj0izCmQ88lAYe5P@cluster0.ptijg8q.mongodb.net/')
 
 app.use(express.json());
 app.use('/tasks', taskRoutes);

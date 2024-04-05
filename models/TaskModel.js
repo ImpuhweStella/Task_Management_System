@@ -15,17 +15,48 @@ const taskSchema = new mongoose.Schema({
         default: 'TODO'
     },
     startDate: {
-        type: String,
+        type: Date,
         default: Date.now
     },
     endDate: {
-        type: String
+        type: Date
     },
     duration: {
-        type: Number // in minutes, hours, or days
+        type: Number, // in minutes, hours, or days
+        required: false
     },
+    category: {
+        type: String,
+        enum: ['WEEKLY', 'DAILY'],
+        required: true
+    },
+    priority: {
+        type: String,
+        enum: ['LOW', 'MEDIUM', 'HIGH', 'VERY HIGH'],
+        default: 'MEDIUM'
+    },
+    color: {
+        type: String,
+        required: false
+    },
+    checklist: [{
+        title: {
+            type: String,
+            required: true
+        },
+        completed: {
+            type: Boolean,
+            default: false
+        }
+    }],
+    workload: {
+        type: Number,
+        min: 0,
+        max: 5,
+        default: 0
+    }
 });
 
-const Task = mongoose.model('Task', taskSchema);
+const TaskModel = mongoose.model('Task', taskSchema);
 
-module.exports = Task;
+module.exports = TaskModel;

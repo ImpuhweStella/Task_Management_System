@@ -1,11 +1,18 @@
-
-
-const Task = require('../models/TaskModel');
+const TaskModel = require('../models/TaskModel');
 const moment = require('moment');
 
 const createTask = async (req, res) => {
     try {
-        const task = new Task(req.body);
+        const task = new TaskModel({
+            title: req.body.title,
+            description: req.body.description,
+            category: req.body.category,
+            priority: req.body.priority,
+            color: req.body.color,
+            checklist: req.body.checklist,
+            workload: req.body.workload
+        });
+
         await task.save();
         res.status(201).json(task);
     } catch (err) {
@@ -15,7 +22,7 @@ const createTask = async (req, res) => {
 
 const listTasks = async (req, res) => {
     try {
-        const tasks = await Task.find();
+        const tasks = await TaskModel.find();
         res.json(tasks);
     } catch (err) {
         res.status(500).json({ message: err.message });
@@ -25,7 +32,7 @@ const listTasks = async (req, res) => {
 const deleteTask = async (req, res) => {
     try {
         const { taskId } = req.params;
-        const task = await Task.findByIdAndDelete(taskId);
+        const task = await TaskModel.findByIdAndDelete(taskId);
         if (!task) {
             return res.status(404).json({ message: 'Task not found' });
         }
@@ -38,7 +45,7 @@ const deleteTask = async (req, res) => {
 const getTaskById = async (req, res) => {
     try {
         const { taskId } = req.params;
-        const task = await Task.findById(taskId);
+        const task = await TaskModel.findById(taskId);
         if (!task) {
             return res.status(404).json({ message: 'Task not found' });
         }
@@ -53,7 +60,7 @@ const updateTaskStatus = async (req, res) => {
         const { taskId } = req.params;
         const { status } = req.body;
 
-        const task = await Task.findById(taskId);
+        const task = await TaskModel.findById(taskId);
 
         if (!task) {
             return res.status(404).json({ message: 'Task not found' });
@@ -84,7 +91,7 @@ const updateTaskStatus = async (req, res) => {
 const updateTask = async (req, res) => {
     try {
         const { taskId } = req.params;
-        const task = await Task.findByIdAndUpdate(taskId, req.body, { new: true });
+        const task = await TaskModel.findByIdAndUpdate(taskId, req.body, { new: true });
         if (!task) {
             return res.status(404).json({ message: 'Task not found' });
         }
