@@ -109,3 +109,6 @@ module.exports = {
     getTaskById,
     updateTask
 };
+
+
+mongoose.connect('mongodb://localhost:27017/TaskManagementApp')

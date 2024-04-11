@@ -54,7 +54,26 @@ const taskSchema = new mongoose.Schema({
         min: 0,
         max: 5,
         default: 0
+    },
+    owner: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
+    },
+    project: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Project',
+        required: true
+    },
+    assignee: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    },
+    isCompleted: {
+        type: Boolean,
+        default: false
     }
+
 });
 
 const TaskModel = mongoose.model('Task', taskSchema);
