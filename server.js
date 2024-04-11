@@ -1,6 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const authRoutes = require('./routes/AuthRoutes');
+const authRoutes = require('./routes/AuthenticationRoutes');
 const projectRoutes = require('./routes/ProjectRoutes');
 const taskAssignmentRoutes = require('./routes/TaskAssignmentRoutes');
 const taskRoutes = require('./routes/TaskRoutes');
