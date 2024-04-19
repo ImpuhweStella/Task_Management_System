@@ -72,7 +72,12 @@ const taskSchema = new mongoose.Schema({
     isCompleted: {
         type: Boolean,
         default: false
-    }
+    },
+    reminders: [{
+        date: { type: Date, required: true },
+        sent: { type: Boolean, default: false }
+    }]
+
 
 });
 

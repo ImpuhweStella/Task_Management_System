@@ -2,6 +2,9 @@
 const express = require('express');
 const router = express.Router();
 const taskController = require('../controllers/TaskController');
+const ReminderController = require('../controllers/ReminderController');
+
+router.post('/:id/setReminder', ReminderController.setReminder);
 
 router.get('/', taskController.listTasks);
 router.get('/:id', taskController.getTaskById);

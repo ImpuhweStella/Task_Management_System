@@ -74,11 +74,7 @@ const updateTaskStatus = async (req, res) => {
             task.status = status;
         } else if (isOverdue) {
             task.status = 'OVERDUE';
-        } else if (isLate) {
-            task.status = 'LATE';
-        } else {
-            task.status = 'IN_PROGRESS';
-        }
+           
 
         await task.save();
 
